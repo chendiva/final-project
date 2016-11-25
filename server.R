@@ -10,10 +10,10 @@ library(rsconnect)
 source('./Scripts/bubbledotchart.r')
 df1<- read.csv('./data/Survey.csv',stringsAsFactors = FALSE)
 df2 <- read.csv('./data/Procedures.csv',stringsAsFactors = FALSE)
-df3 <- df2 %>% select(Hospital.Name,Gastrointestinal,Eye,Nervous.System,Musculoskeletal,Genitourinary,Skin,Cardiovascular,Respiratory,Other)
+
 df4 = df1 %>% distinct_(~Hospital.Name,~State)
-df5 <- left_join(df4,df2,by = "Hospital.Name") 
-#Start Shiny server
+df5 <- left_join(df4,df2,by = "Hospital.Name") %>% filter_(~Gastrointestinal != "Not Available") %>%filter_(~Cardiovascular != "Not Available") %>% 
+  select(Hospital.Name,State,Gastrointestinal,Eye,Nervous.System,Musculoskeletal,Genitourinary,Skin,Cardiovascular,Respiratory,Other)
 
 shinyServer(function(input, output) { 
   
@@ -23,6 +23,6 @@ shinyServer(function(input, output) {
     return(BuildBubble.state(input$ycol))
   }) 
   output$table1 <- DT::renderDataTable(
-    DT::datatable(df3, options = list(pageLength = 20))
+    DT::datatable(df5, options = list(pageLength = 20))
   )
 })
