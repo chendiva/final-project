@@ -11,6 +11,8 @@ source('./Scripts/bubbledotchart.r')
 df1<- read.csv('./data/Survey.csv',stringsAsFactors = FALSE)
 df2 <- read.csv('./data/Procedures.csv',stringsAsFactors = FALSE)
 df3 <- df2 %>% select(Hospital.Name,Gastrointestinal,Eye,Nervous.System,Musculoskeletal,Genitourinary,Skin,Cardiovascular,Respiratory,Other)
+df4 = df1 %>% distinct_(~Hospital.Name,~State)
+df5 <- left_join(df4,df2,by = "Hospital.Name") 
 #Start Shiny server
 
 shinyServer(function(input, output) { 
