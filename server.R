@@ -9,6 +9,7 @@ library(DT)
 #Set the data set into the data frame
 source('./Scripts/bubbledotchart.r')
 source('./Scripts/barchart.r')
+source('./Scripts/piecharthospital.r')
 df1<- read.csv('./data/Survey.csv',stringsAsFactors = FALSE)
 df2 <- read.csv('./data/Procedures.csv',stringsAsFactors = FALSE)
 
@@ -33,4 +34,7 @@ shinyServer(function(input, output) {
   output$table1 <- DT::renderDataTable(
     DT::datatable(df5, options = list(pageLength = 20))
   )
+  output$pie.hospital<-renderPlotly({
+    return(BuildPie.hospital(input$ycol3))
+  })
 })

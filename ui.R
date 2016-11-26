@@ -32,13 +32,18 @@ shinyUI(navbarPage('Procedures across USA in 2014',
                                                            "Other kind of surgery" = 'Other'
                                                            ),
                                             selected = "Gastrointestinal"
-                                )
+                                ),
+                                selectInput('ycol3', 'Hopital choice',
+                                            choices = df2$Hospital.Name ,              
+                                            
+                                            selected = "CROSSROADS COMMUNITY HOSPITAL")
                               ),
                               
                               # Main panel: display plotly map
                               mainPanel(
                                 plotlyOutput('bar.state'),
-                                plotlyOutput('bubble'),DT::dataTableOutput('table1')
+                                plotlyOutput('bubble'),DT::dataTableOutput('table1'),
+                                plotlyOutput('pie.hospital')
                               )
                             )
                           
