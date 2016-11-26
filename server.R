@@ -12,7 +12,6 @@ source('./Scripts/barchart.r')
 source('./Scripts/piecharthospital.r')
 df1<- read.csv('./data/Survey.csv',stringsAsFactors = FALSE)
 df2 <- read.csv('./data/Procedures.csv',stringsAsFactors = FALSE)
-
 df4 = df1 %>% distinct_(~Hospital.Name,~State)
 df5 <- left_join(df4,df2,by = "Hospital.Name") %>% filter_(~Gastrointestinal != "Not Available") %>%filter_(~Cardiovascular != "Not Available") %>% 
   select(Hospital.Name,State,Gastrointestinal,Eye,Nervous.System,Musculoskeletal,Genitourinary,Skin,Cardiovascular,Respiratory,Other)
@@ -23,8 +22,8 @@ df3 <- df5 %>% group_by_(~State) %>% select(State,Gastrointestinal,Eye,Nervous.S
 
 shinyServer(function(input, output) { 
   
-  # Render a plotly object that returns your map
-  #Put the variables of the data frame and the two you need for comparison into the function(which you get these from the ui)
+  # Render a plotly object that returns your map, charts and the table
+  #Put the variables of the data frame that you need for comparison into the function(which you get these from the ui)
   output$bar.state <-renderPlotly({
     return(BuildBar.state(input$ycol2))
   })

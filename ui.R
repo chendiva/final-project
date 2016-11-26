@@ -5,16 +5,19 @@ library(stringr)
 library(dplyr)
 library(DT)
 shinyUI(navbarPage('Procedures across USA in 2014',
-                   # Create a tab panel for your map
+                   # Create a tab panel for your charts
                    tabPanel('In-depth data analyzation',
                             titlePanel('analyztion by levels'),
-                            # Create sidebar layout
+                            # Create sidebar layout for the in-depth analyzation from different levels.
                             sidebarLayout(
                               
                               # Side panel for controls
                               sidebarPanel(
                                 
-                                # Input to select variable to map
+                                # Input to select variable to chats
+                                #In the state level, you choose the surgery you want to compare among all the states that are information available(Some hospital refused to offer their statistics)
+                                #In the hospital level, there are two ways to compare, the bubble chart offers you a way to compare certain surgery among all the hospitals that offered their statistics.
+                                #The pie chart based on the hospital level offer you a choice of hospital you want to look into, and show the proportion of the procedures that the hospital had conducted.
                                 selectInput('ycol2', 'Type of Surgery for State level',
                                             choices = list("Gastrointestinal surgery" = 'Gastrointestinal', "Eye surgery" = 'Eye',
                                                            "Nervous System surgery"= 'Nervous.System', "Musculoskeletal surgery"= 'Musculoskeletal',
@@ -39,7 +42,7 @@ shinyUI(navbarPage('Procedures across USA in 2014',
                                             selected = "CROSSROADS COMMUNITY HOSPITAL")
                               ),
                               
-                              # Main panel: display plotly map
+                              # Main panel: display plotly charts and a table that you can search for a certain hospital's information about surgery.
                               mainPanel(
                                 plotlyOutput('bar.state'),
                                 plotlyOutput('bubble'),DT::dataTableOutput('table1'),
