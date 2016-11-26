@@ -7,7 +7,7 @@ library(shiny)
 
 
 
-BuildBubble.state <- function(yvar){
+BuildBubble <- function(yvar){
   df2 <- df2 %>% filter_(~Gastrointestinal != "Not Available") %>%filter_(~Cardiovascular != "Not Available") %>% 
        select(Hospital.Name,Gastrointestinal,Eye,Nervous.System,Musculoskeletal,Genitourinary,Skin,Cardiovascular,Respiratory,Other)
   df2$sum <- as.numeric(df2$Gastrointestinal) + as.numeric(df2$Eye) + as.numeric(df2$Nervous.System)+ as.numeric(df2$Musculoskeletal) + as.numeric(df2$Genitourinary) + as.numeric(df2$Skin) + as.numeric(df2$Cardiovascular) + as.numeric(df2$Respiratory) +as.numeric(df2$Other)

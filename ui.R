@@ -15,7 +15,16 @@ shinyUI(navbarPage('Procedures across USA in 2014',
                               sidebarPanel(
                                 
                                 # Input to select variable to map
-                                selectInput('ycol', 'Type of Surgery',
+                                selectInput('ycol2', 'Type of Surgery for State level',
+                                            choices = list("Gastrointestinal surgery" = 'Gastrointestinal', "Eye surgery" = 'Eye',
+                                                           "Nervous System surgery"= 'Nervous.System', "Musculoskeletal surgery"= 'Musculoskeletal',
+                                                           "Skin surgery" = 'Skin',"Genitourinary surgery" = 'Genitourinary',
+                                                           "Cardiovascular surgery" = 'Cardiovascular', "Respiratory surgery" = 'Respiratory',
+                                                           "Other kind of surgery" = 'Other'
+                                            ),
+                                            selected = "Gastrointestinal"
+                                ),
+                                selectInput('ycol', 'Type of Surgery for hospital level',
                                             choices = list("Gastrointestinal surgery" = 'Gastrointestinal', "Eye surgery" = 'Eye',
                                                            "Nervous System surgery"= 'Nervous.System', "Musculoskeletal surgery"= 'Musculoskeletal',
                                                            "Skin surgery" = 'Skin',"Genitourinary surgery" = 'Genitourinary',
@@ -28,7 +37,8 @@ shinyUI(navbarPage('Procedures across USA in 2014',
                               
                               # Main panel: display plotly map
                               mainPanel(
-                                plotlyOutput('bubble.state'),DT::dataTableOutput('table1')
+                                plotlyOutput('bar.state'),
+                                plotlyOutput('bubble'),DT::dataTableOutput('table1')
                               )
                             )
                           
