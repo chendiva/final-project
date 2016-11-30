@@ -6,6 +6,7 @@ library(stringr)
 
 #Build the function that can return the pie chart that display the proportion of procedures of certain hospital.
 BuildPie.hospital<- function(name){
+  
   #We need to make arrangement of the data first (take off the rows without any value, and calculate the sum)
   df2 <- read.csv('./data/Procedures.csv',stringsAsFactors = FALSE)
   df2 <- df2 %>% filter_(~Gastrointestinal != "Not Available") %>%filter_(~Cardiovascular != "Not Available") %>% 
@@ -31,10 +32,12 @@ BuildPie.hospital<- function(name){
              marker = list(colors = colors,
                            line = list(color = '#FFFFFF', width = 1)),
              showlegend = FALSE) %>%
+    
     #Set the tiltle that changes with the hospital of your choice.
     layout(title = paste('Procedure proportion of',str_to_title(name)),
            xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
            yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+  
    #Return the pie chart.
     return(p)
 }

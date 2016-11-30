@@ -36,5 +36,7 @@ BuildBar.state <- function(yvar){
          xaxis = list(showgrid = FALSE),
          yaxis = list(showgrid = FALSE),
          showlegend = FALSE)
-      return(p)
+  
+  #Return the plot 
+  return(p)
 }
