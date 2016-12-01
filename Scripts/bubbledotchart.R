@@ -36,8 +36,10 @@ BuildBubble <- function(yvar){
     
     #Set the title of the graph that will be layout correspond to the variable we are using for comparing the procedures among different hospitals.
     layout(title = paste0("Proportion of ",str_to_title(yvar)," surgery in various hospital"),
-           xaxis = list(showgrid = FALSE),
-           yaxis = list(showgrid = FALSE),
+           xaxis = list(title = "Sum of all the procedures in the hospital",
+                        showgrid = FALSE),
+           yaxis = list(title= paste0(yvar," surgery number"),
+                        showgrid = FALSE),
            showlegend = FALSE)
   
   #Return the plot in the end.

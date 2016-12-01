@@ -32,9 +32,11 @@ BuildBar.state <- function(yvar){
    p<-plot_ly(df3, x = df3$State, y = eval(parse(text = y.equation)), color = df3$State,
         size = df3$sum,
         text = ~paste("Percentage:",round(as.numeric(unlist(df3[,eval(yvar)]))*100/df3$sum,digit = 2),'%'))%>% 
-      layout(title = paste0("Comparison of different types of surgery in State level "),
-         xaxis = list(showgrid = FALSE),
-         yaxis = list(showgrid = FALSE),
+      layout(title = paste0("Comparison of ",str_to_title(yvar), " surgery in State level "),
+         xaxis = list(title = "State Name (Abbreviation)",
+                      showgrid = FALSE),
+         yaxis = list(title = paste0(yvar," surgery number"),
+                      showgrid = FALSE),
          showlegend = FALSE)
   
   #Return the plot 
