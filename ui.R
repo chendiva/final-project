@@ -1,10 +1,17 @@
 # ui.R
+library(shinythemes)
 library(shiny)
 library(plotly)
 library(stringr)
 library(dplyr)
 library(DT)
-shinyUI(navbarPage('Procedures across USA in 2014',
+
+#This setting for taglist is used to make the theme of the internet
+ui = tagList(
+  shinythemes::themeSelector(),
+  navbarPage(
+    theme = "slate",        
+    'Procedures across USA in 2014',
                    # Create a tab panel for your charts
                    tabPanel('State level analyzation',
                             titlePanel('Analyztion of different kind of procedures in state level'),
