@@ -28,10 +28,8 @@ BuildBar.state <- function(yvar){
    y.equation <- paste0('~', yvar)
    
    #plot the bar chart, and set the size based on the sum of the total number of surgery, and the color based on the states.
-   #Display the percentage of each state based on their own total number of procedures.
    p<-plot_ly(df3, x = df3$State, y = eval(parse(text = y.equation)), color = df3$State,
-        size = df3$sum,
-        text = ~paste("Percentage:",round(as.numeric(unlist(df3[,eval(yvar)]))*100/df3$sum,digit = 2),'%'))%>% 
+        size = df3$sum)%>% 
       layout(title = paste0("Comparison of ",str_to_title(yvar), " surgery in State level "),
          xaxis = list(title = "State Name (Abbreviation)",
                       showgrid = FALSE),

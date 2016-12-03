@@ -5,7 +5,7 @@ library(plotly)
 library(shiny)
 library(rsconnect)
 library(DT)
-
+library(reshape2)
 #Read in data
 #Set the data set into the data frame
 source('./Scripts/bubbledotchart.r')
@@ -18,17 +18,17 @@ df2 <- read.csv('./data/Procedures.csv',stringsAsFactors = FALSE)
 
 #In df4, I select the state and the hospital and the state name, which is necessary, since we doesn't need evey data
 #Also because we are using this later to combine it with df2, which I have checked, not all the data are matched.
-df4 = df1 %>% distinct_(~Hospital.Name,~State)
+df4 = df1 %>% distinct_(~Hospital.Name,~State,~City)
 
 #df5 is the data frame that joined two sets of data. Our data is a little bit weird since the N/A part is not blank, we can not use the normal mathod to get rid of the N/A part.
 #After observation, the N/A part will shown "Not available" in two parts. The first part is in every surgery, and one of the row only shown in the column of "Cardivascular".
 # As a result, i can used filter to get rid off the hospital that refused to offered data, in order to let our plots publish succcessfully.
 df5 <- left_join(df4,df2,by = "Hospital.Name") %>% filter_(~Gastrointestinal != "Not Available") %>%filter_(~Cardiovascular != "Not Available") %>% 
-  select(Hospital.Name,State,Gastrointestinal,Eye,Nervous.System,Musculoskeletal,Genitourinary,Skin,Cardiovascular,Respiratory,Other)
+  select(Hospital.Name,State,City,Gastrointestinal,Eye,Nervous.System,Musculoskeletal,Genitourinary,Skin,Cardiovascular,Respiratory,Other)
 
 #df3 was created for the state level, I grouped it according to states, and selected only the information I need for the bar graph.
 df3 <- df5 %>% group_by_(~State) %>% select(State,Gastrointestinal,Eye,Nervous.System,Musculoskeletal,Genitourinary,Skin,Cardiovascular,Respiratory,Other) 
-
+df6 <- df5 %>% group_by_(~City) %>% select(City,Gastrointestinal,Eye,Nervous.System,Musculoskeletal,Genitourinary,Skin,Cardiovascular,Respiratory,Other) 
      
 
 
@@ -39,12 +39,16 @@ shinyServer(function(input, output) {
   output$bar.state <-renderPlotly({
     return(BuildBar.state(input$ycol2))
   })
+  
   output$bubble <- renderPlotly({ 
     return(BuildBubble(input$ycol))
   }) 
+  
+  #I set the row initially displayed is ten, and then you can click the column to sort.
   output$table1 <- DT::renderDataTable(
-    DT::datatable(df5, options = list(pageLength = 10))
+    DT::datatable(df5, options = list(pageLength = 10,orderClasses = TRUE))
   )
+  
   output$pie.hospital<-renderPlotly({
     return(BuildPie.hospital(input$ycol3))
   })

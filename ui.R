@@ -43,7 +43,8 @@ ui = tagList(
                             )
                           
                    ),
-                   
+                         
+    
                    tabPanel('Hopital level analyzation',
                             titlePanel('Analyztion of various procedures in the hospital level'),
                             # Create sidebar layout for the in-depth analyzation from hospital level.
@@ -90,12 +91,14 @@ ui = tagList(
                                             choices = df2$Hospital.Name ,              
                                             
                                             selected = "CROSSROADS COMMUNITY HOSPITAL")
+                              
                               ),
                               
                               # Main panel: display plotly charts and a table that you can search for a certain hospital's information about surgery.
                               mainPanel(
+                                plotlyOutput('pie.hospital'),DT::dataTableOutput('table1')
                                 
-                                plotlyOutput('pie.hospital'), DT::dataTableOutput('table1')
+                                
                                 
                               )
                             )
