@@ -103,6 +103,41 @@ ui = tagList(
                               )
                             )
                             
+                   ), 
+                  tabPanel('Procedures by State (Map)',
+                   titlePanel('Map representation of the Number of Procedures by State'),
+                   # Create sidebar layout for the in-depth analyzation by state level.
+                   sidebarLayout(
+                     
+                     # Side panel for controls
+                     sidebarPanel(
+                       
+                       # Input to select variable to chats
+                       
+                       selectInput('map.variable', 'Type of Procedure',
+                                   choices = list("Gastrointestinal surgery" = 'Gastrointestinal', "Eye surgery" = 'Eye',
+                                                  "Nervous System surgery"= 'Nervous.System', "Musculoskeletal surgery"= 'Musculoskeletal',
+                                                  "Skin surgery" = 'Skin',"Genitourinary surgery" = 'Genitourinary',
+                                                  "Cardiovascular surgery" = 'Cardiovascular', "Respiratory surgery" = 'Respiratory',
+                                                  "Other kind of surgery" = 'Other'
+                                   ),
+                                   selected = "Gastrointestinal"
+                       ),
+                       
+                       sliderInput("display",
+                                   "Only display states with # of procedures less than:",
+                                   min = 0,  max = 600000,  value = 250000)
+                      ), 
+                     
+                     # Main panel: display plotly charts and a table that you can search for a certain hospital's information about surgery.
+                     mainPanel(
+                       
+                       plotlyOutput('map'),
+                       
+                       h5("*Data from Tennessee not available for some displays", align = "center")
+                     )
                    )
+             
                    
 ))
+)
