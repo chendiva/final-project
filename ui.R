@@ -139,5 +139,33 @@ ui = tagList(
                    )
              
                    
-))
+    )
+  ,
+  tabPanel("Compare Two Surgeries",
+           titlePanel('Compare Surgeries By State'),
+           
+    sidebarLayout(
+      sidebarPanel(
+        titlePanel('Please Select Two Surgeries to Compare'),
+        selectInput('select', label = 'Surgery 1',
+                    choices = list('Gastrointestinal' = 'Gastrointestinal', 'Eye' = 'Eye', 'Nervous System' = 'Nervous.System', 
+                                   'Musculoskeletal' = 'Musculoskeletal', 'Skin' = 'Skin', 'Genitourinary' = 'Genitourinary',
+                                   'Cardiovascular' = 'Cardiovascular', 'Respiratory' = 'Respiratory',
+                                   'Other' = 'Other')),
+        selectInput('select1', label = 'Surgery 2', 
+                    choices = list('Gastrointestinal' = 'Gastrointestinal', 'Eye' = 'Eye', 'Nervous System' = 'Nervous.System', 
+                                   'Musculoskeletal' = 'Musculoskeletal', 'Skin' = 'Skin', 'Genitourinary' = 'Genitourinary',
+                                   'Cardiovascular' = 'Cardiovascular', 'Respiratory' = 'Respiratory',
+                                   'Other' = 'Other'))
+      ),
+      
+      mainPanel(
+        # Plot the output with the name "scatter"
+        plotlyOutput('scatter'),
+        p("When a patient is looking into getting two kinds of surgeries, this tool can help the patient get a 
+          general sense of how often the two surgeries occur in each state. The patient would want to do their
+          surgeries in states with hospitals that have good experience with both types of surgeries")
+      )
+    )
+  ))
 )
