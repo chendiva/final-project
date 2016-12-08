@@ -1,4 +1,5 @@
 #Server.r
+#Try to upload all the things to the global.r
 #Load the package and library that we need to use 
 library(dplyr)
 library(plotly)
