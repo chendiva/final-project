@@ -81,7 +81,7 @@ ui = tagList(
                    ),
                          
     
-                   tabPanel('Hopital level analyzation',
+                   tabPanel('Hospital level analyzation',
                             titlePanel('Analyztion of various procedures in the hospital level'),
                             # Create sidebar layout for the in-depth analyzation from hospital level.
                             sidebarLayout(

@@ -7,6 +7,7 @@ library(zipcode)
 library(rsconnect)
 library(DT)
 library(reshape2)
+library(magrittr)
 
 #df1 and df2 are two files that we are using
 df1 <- read.csv('data/Survey.csv',stringsAsFactors = FALSE)
