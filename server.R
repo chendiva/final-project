@@ -15,6 +15,8 @@ source('Scripts/piecharthospital.r')
 source('Scripts/usmap.r')
 source('./scripts/dumbbell.r')
 
+map.data <- as.data.frame(read.csv('~/Desktop/Info/final-project/data/Procedures.csv', stringsAsFactors = FALSE))
+map.data <- left_join(map.data, as.data.frame(read.csv('~/Desktop/Info/final-project/data/Survey.csv', stringsAsFactors = FALSE)))
 
 
 

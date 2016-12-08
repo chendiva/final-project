@@ -1,6 +1,7 @@
 library (plotly)
 library (dplyr)
 library(zipcode)
+data("zipcode")
 # Sets up the DataFrame map.data to work with.
 drawMap <- function(map.data, procedure, max.value) {
   map.data.place <- select(map.data, Hospital.Name, City, State, ZIP.Code)
@@ -39,7 +40,6 @@ drawMap <- function(map.data, procedure, max.value) {
       z = ~procedure, locations = ~State,
       color = ~procedure, colors = c("yellow","red"), hoverinfo = ~info, colors = 'Purples'
     ) %>%
-    colorbar(title = "Number of Procedures") %>%
     layout(
       title = paste0('Number of ', procedure, ' procedures by State*<br>(Hover for breakdown)'),
       geo = g
