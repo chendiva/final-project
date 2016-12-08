@@ -1,25 +1,23 @@
 #Server.r
-#Try to upload all the things to the global.r
 #Load the package and library that we need to use 
 library(dplyr)
 library(plotly)
 library(shiny)
-library(zipcode)
-library(rsconnect)
+#library(rsconnect)
 library(DT)
 library(reshape2)
+library(magrittr)
+
 #Read in data
 #Set the data set into the data frame
 source('./Scripts/bubbledotchart.r')
 source('./Scripts/barchart.r')
 source('./Scripts/piecharthospital.r')
 source('./Scripts/usmap.r')
-source('./Scripts/dumbbell.r')
+source('./scripts/dumbbell.r')
 
 map.data <- as.data.frame(read.csv('./data/Procedures.csv', stringsAsFactors = FALSE))
 map.data <- left_join(map.data, as.data.frame(read.csv('./data/Survey.csv', stringsAsFactors = FALSE)))
-
-
 
 shinyServer(function(input, output) { 
   
