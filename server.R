@@ -3,20 +3,20 @@
 library(dplyr)
 library(plotly)
 library(shiny)
-
+library(zipcode)
 library(rsconnect)
 library(DT)
 library(reshape2)
 #Read in data
 #Set the data set into the data frame
-source('Scripts/bubbledotchart.r')
-source('Scripts/barchart.r')
-source('Scripts/piecharthospital.r')
-source('Scripts/usmap.r')
-source('./scripts/dumbbell.r')
+source('./Scripts/bubbledotchart.r')
+source('./Scripts/barchart.r')
+source('./Scripts/piecharthospital.r')
+source('./Scripts/usmap.r')
+source('./Scripts/dumbbell.r')
 
-map.data <- as.data.frame(read.csv('~/Desktop/Info/final-project/data/Procedures.csv', stringsAsFactors = FALSE))
-map.data <- left_join(map.data, as.data.frame(read.csv('~/Desktop/Info/final-project/data/Survey.csv', stringsAsFactors = FALSE)))
+map.data <- as.data.frame(read.csv('./data/Procedures.csv', stringsAsFactors = FALSE))
+map.data <- left_join(map.data, as.data.frame(read.csv('./data/Survey.csv', stringsAsFactors = FALSE)))
 
 
 

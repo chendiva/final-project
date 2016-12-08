@@ -5,7 +5,7 @@ library(plotly)
 library(stringr)
 library(dplyr)
 library(DT)
-
+library(zipcode)
 #This setting for taglist is used to make the theme of the internet
 ui = tagList(
   shinythemes::themeSelector(),

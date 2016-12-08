@@ -1,4 +1,9 @@
-
+library(dplyr)
+library(plotly)
+library(shiny)
+library(zipcode)
+library(DT)
+library(reshape2)
 
 
 compare.surgeries <- function(surgery.one, surgery.two) {
