@@ -1,3 +1,13 @@
+
+#Load the library we need
+library(dplyr)
+library(plotly)
+library(shiny)
+library(zipcode)
+library(rsconnect)
+library(DT)
+library(reshape2)
+
 #df1 and df2 are two files that we are using
 df1 <- read.csv('data/Survey.csv',stringsAsFactors = FALSE)
 df2 <- read.csv('data/Procedures.csv',stringsAsFactors = FALSE)
